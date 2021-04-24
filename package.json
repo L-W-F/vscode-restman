@@ -1,0 +1,194 @@
+{
+  "name": "vscode-restman",
+  "displayName": "RESTMAN",
+  "description": "VS Code extension that execute requests in the REST files.",
+  "version": "0.0.13",
+  "publisher": "crossjs",
+  "author": {
+    "name": "crossjs",
+    "email": "liwenfu@crossjs.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crossjs/vscode-restman/issues",
+    "email": "liwenfu@crossjs.com"
+  },
+  "homepage": "https://github.com/crossjs/vscode-restman/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crossjs/vscode-restman.git"
+  },
+  "engines": {
+    "vscode": "^1.54.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/*.rest"
+  ],
+  "icon": "restman.png",
+  "main": "./out/extension",
+  "contributes": {
+    "languages": [
+      {
+        "id": "rest",
+        "aliases": [
+          "REST",
+          "Markdown REST",
+          "Rest"
+        ],
+        "extensions": [
+          "rest"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "jsonc",
+        "filenames": [
+          ".restrc"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "rest",
+        "scopeName": "text.html.markdown.rest",
+        "path": "./syntaxes/rest.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "title": "Request",
+        "command": "restman.request",
+        "category": "RESTMAN"
+      },
+      {
+        "title": "Preview",
+        "command": "restman.preview",
+        "category": "RESTMAN",
+        "icon": {
+          "light": "./media/preview-light.svg",
+          "dark": "./media/preview-dark.svg"
+        }
+      },
+      {
+        "title": "Generate",
+        "command": "restman.generate",
+        "category": "RESTMAN"
+      },
+      {
+        "title": "Format",
+        "command": "restman.format",
+        "category": "RESTMAN",
+        "icon": {
+          "light": "./media/preview-light.svg",
+          "dark": "./media/preview-dark.svg"
+        }
+      },
+      {
+        "title": "Format All",
+        "command": "restman.formatAll",
+        "category": "RESTMAN"
+      }
+    ],
+    "configuration": {
+      "properties": {
+        "restman.enable": {
+          "type": "boolean",
+          "description": "Enable",
+          "default": true
+        },
+        "restman.mockServer": {
+          "type": "boolean",
+          "description": "Enable mock server",
+          "default": false
+        },
+        "restman.dotenvFiles": {
+          "type": "string",
+          "description": "A glob pattern that defines the files to search for. The glob pattern will be matched against the file paths of resulting matches relative to their workspace. Use a relative pattern to restrict the search results to a workspace folder.",
+          "default": "**/.{env,env.local,env.development.local}"
+        }
+      }
+    },
+    "menus": {
+      "editor/title": [
+        {
+          "command": "restman.preview",
+          "group": "navigation",
+          "when": "editorLangId == rest"
+        },
+        {
+          "command": "restman.format",
+          "group": "navigation",
+          "when": "editorLangId == rest"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "restman.preview",
+          "when": "editorLangId == rest"
+        },
+        {
+          "command": "restman.generate"
+        },
+        {
+          "command": "restman.format",
+          "when": "editorLangId == rest"
+        },
+        {
+          "command": "restman.formatAll"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "webpack --mode production",
+    "build": "vsce package --yarn --out ./dist/vscode-restman.vsix",
+    "release": "vsce publish",
+    "webpack": "webpack --mode development",
+    "webpack-dev": "webpack --mode development --watch",
+    "compile": "tsc -p ./",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "yarn lint --fix",
+    "watch": "yarn compile -watch",
+    "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "ajv": "^7.2.1",
+    "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
+    "form-data": "^4.0.0",
+    "formidable": "^1.2.2",
+    "json-schema-faker": "^0.5.0-rcv.34",
+    "lodash": "^4.17.21",
+    "micromatch": "^4.0.2",
+    "tough-cookie": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/formidable": "^1.2.1",
+    "@types/jest": "^26.0.21",
+    "@types/json-schema-faker": "^0.5.1",
+    "@types/lodash": "^4.14.168",
+    "@types/micromatch": "^4.0.1",
+    "@types/node": "^14.14.35",
+    "@types/tough-cookie": "^4.0.0",
+    "@types/vscode": "^1.54.0",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.22.0",
+    "eslint-plugin-markdown": "^2.0.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "ts-loader": "^7.0.5",
+    "typescript": "^4.2.3",
+    "vsce": "^1.87.1",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "scopeName": "text.html.markdown.rest",
+  "fileTypes": ["rest"],
+  "name": "rest",
+  "patterns": [
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#variables"
+    },
+    {
+      "include": "#markdown"
+    }
+  ],
+  "repository": {
+    "markdown": {
+      "contentName": "text.html.markdown",
+      "patterns": [{ "include": "text.html.markdown" }]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.triple-hyphen.rest",
+          "match": "^---\\n$"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "rest.title",
+          "match": "^(?:#+\\s)?\\[(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS|CONNECT|TRACE)\\]\\s(\\S+)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.rest"
+            },
+            "2": {
+              "name": "constant.language.rest",
+              "patterns": [
+                {
+                  "include": "#variables"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "rest.variable",
+          "match": "{{([\\w._]+)}}",
+          "captures": {
+            "0": {
+              "name": "string.quoted.other.rest"
+            },
+            "1": {
+              "name": "variable.parameter.rest"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

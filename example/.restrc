@@ -1,0 +1,3 @@
+{
+  "template": "## {{NAME}}\n\nPath： {{API}}\n\nMethod： {{METHOD}}\n\n### Request\n\n{{REQUEST}}\n\n### Response\n\n{{RESPONSE}}"
+}

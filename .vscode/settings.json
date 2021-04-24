@@ -1,0 +1,47 @@
+{
+  "editor.fontFamily": "'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', 'Microsoft Yahei', monospace",
+  "editor.fontLigatures": true,
+  "editor.renderWhitespace": "all",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "cSpell.words": [
+    "RESTRC",
+    "YAPI",
+    "cond",
+    "eqeqeq",
+    "instanceof",
+    "isnan",
+    "linebreak",
+    "mkdir",
+    "multiline",
+    "parens",
+    "preview",
+    "restman",
+    "tmpl",
+    "todos",
+    "typedefs",
+    "typeof",
+    "vsix"
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "eslint.format.enable": true,
+  "eslint.packageManager": "yarn",
+  "eslint.probe": [
+    "javascript",
+    "typescript",
+    "json",
+    "markdown",
+    "rest"
+  ],
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "npm.registry": "https://registry.npm.taobao.org",
+  "npm.updateStrategy": "SEMVER"
+}
