@@ -1,0 +1,15 @@
+.restman/
+.vscode/
+coverage/
+dist/
+example/
+node_modules/
+src/
+*.log
+*.map
+*.vsix
+.eslintignore
+.gitignore
+tsconfig.json
+webpack.config.js
+yarn.lock

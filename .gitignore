@@ -1,0 +1,9 @@
+.restman/
+coverage
+dist
+node_modules
+out
+*.log
+*.vsix
+*.local
+.DS_Store

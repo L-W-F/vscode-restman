@@ -1,0 +1,92 @@
+### [POST] /api/tokens
+
+Create a token
+
+```json req
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "default": "{{USERNAME}}",
+          "minLength": 3,
+          "maxLength": 20
+        },
+        "password": {
+          "type": "string",
+          "default": "{{PASSWORD}}",
+          "minLength": 8,
+          "maxLength": 32
+        }
+      },
+      "required": ["username", "password"]
+    }
+  },
+  "required": ["data"]
+}
+```
+
+```json res
+{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "enum": [201]
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "set-cookie": {
+          "type": "array",
+          "items": [{
+            "type": "string",
+            "pattern": "^{{KEY_OF_ACCESS_TOKEN}}=[A-Za-z0-9+/=_-]+\\.[A-Za-z0-9+/=_-]+\\.[A-Za-z0-9+/=_-]+; Max-Age=9000; Path=/; HttpOnly$"
+          }, {
+            "type": "string",
+            "pattern": "^{{KEY_OF_REFRESH_TOKEN}}=[A-Za-z0-9+/=_-]+\\.[A-Za-z0-9+/=_-]+\\.[A-Za-z0-9+/=_-]+; Max-Age=1296000; Path=/; HttpOnly$"
+          }]
+        }
+      },
+      "required": ["set-cookie"]
+    }
+  },
+  "required": ["status", "headers"]
+}
+```
+
+---
+
+### [DELETE] /api/tokens
+
+```json res
+{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "enum": [200]
+    },
+    "headers": {
+      "type": "object",
+      "properties": {
+        "set-cookie": {
+          "type": "array",
+          "items": [{
+            "type": "string",
+            "pattern": "^{{KEY_OF_ACCESS_TOKEN}}=; Max-Age=-1; Path=/; HttpOnly$"
+          }, {
+            "type": "string",
+            "pattern": "^{{KEY_OF_REFRESH_TOKEN}}=; Max-Age=-1; Path=/; HttpOnly$"
+          }]
+        }
+      },
+      "required": ["set-cookie"]
+    }
+  },
+  "required": ["status", "headers"]
+}
+```

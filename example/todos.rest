@@ -1,0 +1,277 @@
+## TODO
+
+待办
+
+---
+
+### [GET] /api/todos
+
+获取待办列表
+
+```json req
+{
+  "type": "object",
+  "properties": {
+    "params": {
+      "type": "object",
+      "properties": {
+        "$offset": {
+          "type": "string",
+          "examples": ["0", "10"]
+        },
+        "$limit": {
+          "type": "string",
+          "examples": ["0", "10"]
+        }
+      }
+    }
+  }
+}
+```
+
+```json res
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "number",
+          "examples": [0, 100]
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^\\d+$"
+              },
+              "content": {
+                "type": "string"
+              },
+              "additional": {
+                "type": "object",
+                "properties": {
+                  "assignee": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "due": {
+                    "type": "number"
+                  }
+                }
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "createdAt": {
+                    "type": "number"
+                  },
+                  "updatedAt": {
+                    "type": "number"
+                  }
+                },
+                "required": ["createdAt", "updatedAt"]
+              }
+            },
+            "required": ["id", "content"]
+          }
+        }
+      },
+      "required": ["total", "items"]
+    }
+  },
+  "required": ["data"]
+}
+```
+
+---
+
+### [POST] /api/todos
+
+```json req
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": ["content"]
+    }
+  },
+  "required": ["data"]
+}
+```
+
+```json res
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^\\d+$"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "content"]
+    }
+  },
+  "required": ["data"]
+}
+```
+
+---
+
+### [GET] /api/todos/{{ID}}
+
+```json res
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^\\d+$"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "content"]
+    }
+  },
+  "required": ["data"]
+}
+```
+
+---
+
+### [PATCH] /api/todos/{{ID}}
+
+```json req
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": ["content"]
+    }
+  },
+  "required": ["data"]
+}
+```
+
+```json res
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^\\d+$"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "content"]
+    }
+  },
+  "required": ["data"]
+}
+```
+
+---
+
+### [PUT] /api/todos/{{ID}}
+
+```json req
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": ["content"]
+    }
+  },
+  "required": ["data"]
+}
+```
+
+```json res
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^\\d+$"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "content"]
+    }
+  },
+  "required": ["data"]
+}
+```
+
+---
+
+### [DELETE] /api/todos/{{ID}}
+
+```json res
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^\\d+$"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "content"]
+    }
+  },
+  "required": ["data"]
+}
+```
+
+---

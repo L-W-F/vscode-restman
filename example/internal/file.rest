@@ -1,0 +1,113 @@
+### [POST] /api/files
+
+Upload a file
+
+```json req
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "properties": {
+        "file": {
+          "type": "file",
+          "examples": [
+            "{{@file}}"
+          ]
+        },
+        "desc": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "file",
+        "desc"
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ]
+}
+```
+
+```json res
+{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "enum": [
+        200
+      ]
+    },
+    "data": {
+      "type": "string",
+      "examples": [
+        "velit"
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}
+```
+
+---
+
+### [GET] /api/files/{{ID}}
+
+Download a file
+
+```json res
+{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "enum": [
+        200
+      ]
+    },
+    "data": {
+      "type": "stream"
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}
+```
+
+---
+
+### [DELETE] /api/files/{{ID}}
+
+Delete a file
+
+```json res
+{
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "enum": [
+        200
+      ]
+    },
+    "data": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "ko"
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}
+```
