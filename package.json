@@ -2,7 +2,7 @@
   "name": "vscode-restman",
   "displayName": "RESTMAN",
   "description": "VS Code extension that execute requests in the REST files.",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "publisher": "crossjs",
   "author": {
     "name": "crossjs",
