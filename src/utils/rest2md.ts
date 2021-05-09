@@ -5,6 +5,7 @@ import { getReqSchema } from './getReqSchema';
 import { getResSchema } from './getResSchema';
 import { isDocHeader } from './isDocHeader';
 import { renderSchemaTable } from './renderSchemaTable';
+import { jsf } from '../utils/jsf';
 
 export const rest2md = (text: string) => {
   return text
@@ -36,10 +37,14 @@ export const rest2md = (text: string) => {
         '#### Method',
         `${method}`,
         '#### Request',
-        `${renderSchemaTable(req as string)}`,
+        renderSchemaTable(req),
+        req ? `\`\`\`json\n${JSON.stringify(jsf(req), null, 2)}\n\`\`\`` : '',
         '#### Response',
-        `${renderSchemaTable(res as string)}`,
-      ].join('\n\n');
+        renderSchemaTable(res),
+        res ? `\`\`\`json\n${JSON.stringify(jsf(res), null, 2)}\n\`\`\`` : '',
+      ]
+        .filter(Boolean)
+        .join('\n\n');
     })
     .join('\n\n---\n\n');
 };

@@ -1,7 +1,7 @@
 import { Schema } from 'json-schema-faker';
 import { debug } from './debug';
 
-export const renderSchemaTable = (schema: string) => {
+export const renderSchemaTable = (schema: null | string) => {
   if (!schema) {
     return '';
   }

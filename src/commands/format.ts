@@ -1,4 +1,5 @@
 import { commands, Position, Selection, TextDocument, window } from 'vscode';
+import prettier from 'prettier';
 import { debug } from '../utils/debug';
 
 export const registerFormatCommand = () =>
@@ -12,12 +13,17 @@ export const registerFormatCommand = () =>
           new Position(line + 1, 0),
           new Position(lines.length + line, lines.slice(-1).length),
         );
-        // Get the word within the selection
-        // const word = document.getText(selection);
-        // const reversed = word.split('').reverse().join('');
 
         editor.edit((editBuilder) => {
-          editBuilder.replace(selection, JSON.stringify(JSON.parse(json), null, 2));
+          editBuilder.replace(
+            selection,
+            prettier
+              .format(json, {
+                parser: 'json',
+                quoteProps: 'consistent',
+              })
+              .trim(),
+          );
         });
       }
     } catch (error) {
