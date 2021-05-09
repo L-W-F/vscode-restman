@@ -19,7 +19,7 @@
     "url": "https://github.com/crossjs/vscode-restman.git"
   },
   "engines": {
-    "vscode": "^1.54.0"
+    "vscode": "^1.55.0"
   },
   "categories": [
     "Other"
