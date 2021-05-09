@@ -1,5 +1,5 @@
 import { commands, Position, Selection, TextDocument, window } from 'vscode';
-import prettier from 'prettier';
+import prettier from 'prettier/standalone';
 import { debug } from '../utils/debug';
 
 export const registerFormatCommand = () =>
